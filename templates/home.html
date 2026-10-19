@@ -1,0 +1,40 @@
+{% extends "base.html" %}
+{% block seo %}<title>The ToniQ Cafe | Your Daily Dose of ToniQ</title><meta name="description" content="Coffee, crafted beverages, and a cozy cafe experience in Karvenagar, Pune. Visit The ToniQ Cafe for dine-in or kerbside pickup.">{% endblock %}
+{% block structured_data %}<script type="application/ld+json">{{ {
+  "@context": "https://schema.org", "@type": "CafeOrCoffeeShop", "name": site.business_name,
+  "telephone": site.phone, "address": {"@type":"PostalAddress", "streetAddress":site.address, "addressLocality":"Pune", "addressRegion":"Maharashtra", "postalCode":"411052", "addressCountry":"IN"},
+  "servesCuisine":"Coffee and beverages", "hasMap":"https://www.google.com/maps/search/?api=1&query=The+ToniQ+Cafe+DP+Road+Karvenagar+Pune"
+}|tojson }}</script>{% endblock %}
+{% block content %}
+<section class="hero">
+  <div class="hero-copy">
+    <span class="eyebrow"><span class="eyebrow-line"></span> A little pause, poured just right</span>
+    <h1>Your daily<br>dose of <em>ToniQ.</em></h1>
+    <p class="hero-description">Coffee, crafted beverages, and a cozy cafe experience made for the moments worth slowing down for.</p>
+    <div class="hero-actions"><a class="button" href="{{ url_for('menu') }}">Explore the menu <span aria-hidden="true">↗</span></a><a class="text-link" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&query=The+ToniQ+Cafe+DP+Road+Karvenagar+Pune">Get directions <span aria-hidden="true">↗</span></a></div>
+    <div class="hero-proof"><span class="proof-stars" aria-label="4.8 out of 5 stars">★★★★★</span><span><strong>4.8 / 5</strong> · 50 Google reviews <small>Rating supplied by the business</small></span></div>
+  </div>
+  <div class="hero-art" role="img" aria-label="Illustrative 3D-style takeaway coffee cup with floating coffee beans">
+    <div class="orbit orbit-one"></div><div class="orbit orbit-two"></div>
+    <span class="bean bean-a"></span><span class="bean bean-b"></span><span class="bean bean-c"></span><span class="bean bean-d"></span>
+    <div class="art-caption art-caption-one">slow mornings<br><b>taste better</b></div>
+    <div class="hero-cup"><div class="cup-lid"></div><div class="cup-sleeve"><span>t.</span><small>THE TONIQ<br>CAFE</small></div><div class="cup-base"></div></div>
+    <div class="art-caption art-caption-two">crafted<br><b>with care</b></div>
+    <span class="art-spark spark-one">✳</span><span class="art-spark spark-two">✳</span>
+    <span class="art-disclaimer">Illustrative artwork</span>
+  </div>
+  <span class="hero-side-note">KARVENAGAR · PUNE</span>
+</section>
+<section class="ticker" aria-label="Cafe services"><div class="ticker-track"><span>GOOD COFFEE</span><i>✳</i><span>COZY MOMENTS</span><i>✳</i><span>MADE WITH CARE</span><i>✳</i><span>GOOD COFFEE</span><i>✳</i><span>COZY MOMENTS</span><i>✳</i></div></section>
+<section class="section featured-section">
+  <div class="section-heading"><div><span class="eyebrow">THE MENU, AT A GLANCE</span><h2>A little something<br><em>to look forward to.</em></h2></div><a class="text-link" href="{{ url_for('menu') }}">See all drinks <span aria-hidden="true">↗</span></a></div>
+  {% if products %}<div class="product-grid home-product-grid">{% for product in products %}{% include "_product_card.html" %}{% endfor %}</div>{% else %}<div class="empty-state"><p>Our featured menu is being prepared. Stop by or get in touch for today's selection.</p><a class="text-link" href="{{ url_for('contact') }}">Ask us about the menu ↗</a></div>{% endif %}
+  {% if products|selectattr('demo')|list %}<p class="demo-note">Featured items marked DEMO are examples and need confirmation from the cafe.</p>{% endif %}
+</section>
+<section class="experience-band">
+ <div class="experience-intro"><span class="eyebrow eyebrow-light">YOUR KIND OF PLACE</span><h2>Come for the coffee.<br><em>Stay for the feeling.</em></h2><p>A warm welcome, a favorite cup, a moment to yourself. However you take your coffee break, there’s room for you here.</p><a class="button button-light" href="{{ url_for('about') }}">Get to know us <span aria-hidden="true">↗</span></a></div>
+ <div class="experience-cards"><article><span class="feature-icon">⌂</span><h3>Settle in</h3><p>Dine-in service for a proper pause in your day.</p></article><article><span class="feature-icon">↗</span><h3>Pick up curbside</h3><p>Kerbside pickup is listed as a cafe service.</p></article><article><span class="feature-icon">✳</span><h3>A little love</h3><p><strong>4.8 / 5</strong> from 50 Google reviews, as supplied by the business.</p></article></div>
+</section>
+<section class="quote-section"><span class="quote-mark">“</span><p>We’re making a place for good coffee and the everyday moments around it.</p><span class="quote-caption">A note from The ToniQ Cafe</span><span class="sample-label">Brand statement — not a customer testimonial</span></section>
+<section class="visit-section"><div class="visit-content"><span class="eyebrow">A SPOT IN KARVENAGAR</span><h2>Your next coffee<br><em>is around the corner.</em></h2><p>{{ site.address }}</p><div class="visit-actions"><a class="button" target="_blank" rel="noopener noreferrer" href="https://www.google.com/maps/search/?api=1&query=The+ToniQ+Cafe+DP+Road+Karvenagar+Pune">Get directions <span aria-hidden="true">↗</span></a><a class="text-link" href="{{ url_for('contact') }}">Contact the cafe</a></div></div><div class="map-card"><iframe class="satellite-map" title="Satellite map of The ToniQ Cafe location in Karvenagar, Pune" src="https://maps.google.com/maps?q=The+ToniQ+Cafe,+DP+Road,+opposite+Aamchi+Hotel,+United+Western+Co-Operative+Society,+Ganesh+Nagar,+Karvenagar,+Pune,+Maharashtra+411052&amp;t=k&amp;z=18&amp;output=embed" loading="lazy" referrerpolicy="no-referrer-when-downgrade" allowfullscreen></iframe><a class="map-caption" href="https://www.google.com/maps/search/?api=1&amp;query=The+ToniQ+Cafe+DP+Road+Karvenagar+Pune" target="_blank" rel="noopener noreferrer">Open satellite map ↗</a></div></section>
+{% endblock %}

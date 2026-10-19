@@ -1,0 +1,13 @@
+{% extends "base.html" %}
+{% block seo %}<title>Menu | The ToniQ Cafe, Karvenagar Pune</title><meta name="description" content="Explore the sample drink menu at The ToniQ Cafe in Karvenagar. Current items and prices are clearly marked as demos pending cafe confirmation.">{% endblock %}
+{% block content %}
+<section class="page-hero menu-hero"><span class="eyebrow">SOMETHING GOOD IS BREWING</span><h1>Made to find<br><em>your kind of sip.</em></h1><p>Take a look around our drink list. Find a favorite, or come by and ask us what’s pouring.</p>{% if products|selectattr('demo')|list %}<span class="demo-pill">DEMO MENU · PRICES NOT CONFIRMED</span>{% endif %}</section>
+<section class="section menu-section">
+ <div class="menu-tools"><label class="search-field"><span aria-hidden="true">⌕</span><input id="menu-search" type="search" placeholder="Find your next favorite..." value="{{ query }}" aria-label="Search menu"></label><div class="category-tabs" role="group" aria-label="Filter by category"><button class="category-tab active" data-category-filter="all" type="button">All drinks</button>{% for category in categories %}<button class="category-tab" data-category-filter="{{ category.id }}" type="button">{{ category.name }}</button>{% endfor %}</div></div>
+ <div class="product-grid menu-product-grid" id="menu-grid">{% for product in products %}{% include "_product_card.html" %}{% endfor %}</div>
+ <div class="empty-state" id="menu-empty" hidden><p>No drinks match that search. Try another name or category.</p></div>
+ {% if products|selectattr('demo')|list %}<p class="demo-note">Items marked DEMO are examples and need confirmation. Menu details not marked DEMO are entered by the cafe; please confirm current availability and allergen information directly.</p>{% endif %}
+</section>
+<dialog class="product-dialog" id="product-dialog" aria-labelledby="dialog-title"><button class="dialog-close" aria-label="Close details" type="button">×</button><div class="dialog-art"></div><div class="dialog-content"><span class="eyebrow">A CLOSER LOOK</span><h2 id="dialog-title"></h2><p class="dialog-description"></p><p class="dialog-allergens"></p><strong class="dialog-price"></strong><p class="demo-note">Demo listing — please confirm current menu and details with the cafe.</p></div></dialog>
+{% endblock %}
+{% block scripts %}<script src="{{ url_for('static', filename='js/menu.js') }}" defer></script>{% endblock %}

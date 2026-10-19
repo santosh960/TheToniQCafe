@@ -1,0 +1,3 @@
+{% extends "base.html" %}
+{% block seo %}<title>Request could not be completed | The ToniQ Cafe</title><meta name="robots" content="noindex">{% endblock %}
+{% block content %}<section class="not-found"><span class="brand-mark">t<span>.</span></span><span class="eyebrow">A QUICK CHECK</span><h1>Let's try<br><em>that again.</em></h1><p>{{ message }}</p><a class="button" href="{{ url_for('home') }}">Back to the cafe <span aria-hidden="true">↗</span></a></section>{% endblock %}

@@ -1,0 +1,3 @@
+{% extends "base.html" %}
+{% block seo %}<title>Page not found | The ToniQ Cafe</title><meta name="robots" content="noindex">{% endblock %}
+{% block content %}<section class="not-found"><span class="brand-mark">t<span>.</span></span><span class="eyebrow">A LITTLE OFF THE MENU</span><h1>Nothing brewing<br><em>on this page.</em></h1><p>The link might be old, or the page may have moved.</p><a class="button" href="{{ url_for('home') }}">Back to the cafe <span aria-hidden="true">↗</span></a></section>{% endblock %}

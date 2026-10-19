@@ -1,0 +1,4 @@
+{% extends "base.html" %}
+{% block seo %}<title>Admin sign in | The ToniQ Cafe</title><meta name="robots" content="noindex,nofollow">{% endblock %}
+{% block content %}<section class="admin-login"><div class="login-card"><span class="brand-mark">t<span>.</span></span><span class="eyebrow">CAFE MANAGEMENT</span><h1>Welcome <em>back.</em></h1><p>Sign in to manage cafe content and enquiries.</p><form method="post" action="{{ url_for('admin_authenticate') }}"><input type="hidden" name="_csrf_token" value="{{ csrf_token() }}"><label>Username<input name="username" required autocomplete="username" autofocus></label><label>Password<input type="password" name="password" required autocomplete="current-password"></label><button class="button" type="submit">Sign in <span aria-hidden="true">↗</span></button></form><a class="text-link" href="{{ url_for('home') }}">← Back to the cafe</a></div></section>{% endblock %}
+{% block footer %}{% endblock %}

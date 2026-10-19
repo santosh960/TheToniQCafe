@@ -1,0 +1,58 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#f7f2e9">
+  {% block seo %}
+  <title>The ToniQ Cafe | Coffee & Crafted Beverages in Karvenagar, Pune</title>
+  <meta name="description" content="Find The ToniQ Cafe in Karvenagar, Pune. Drop in for coffee, crafted beverages, dine-in and kerbside pickup.">
+  {% endblock %}
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+  {% block structured_data %}{% endblock %}
+</head>
+<body>
+  <a class="skip-link" href="#main">Skip to content</a>
+  <header class="site-header">
+    <div class="nav-wrap">
+      <a class="brand" href="{{ url_for('home') }}" aria-label="The ToniQ Cafe home">
+        <span class="brand-mark" aria-hidden="true">t<span>.</span></span>
+        <span class="brand-name">The ToniQ <small>C A F E</small></span>
+      </a>
+      <button class="nav-toggle" aria-label="Open navigation" aria-expanded="false" aria-controls="primary-nav"><span></span><span></span></button>
+      <nav id="primary-nav" class="primary-nav" aria-label="Main navigation">
+        <a href="{{ url_for('home') }}" {% if request.endpoint == 'home' %}aria-current="page"{% endif %}>Home</a>
+        <a href="{{ url_for('menu') }}" {% if request.endpoint == 'menu' %}aria-current="page"{% endif %}>Menu</a>
+        <a href="{{ url_for('about') }}" {% if request.endpoint == 'about' %}aria-current="page"{% endif %}>About</a>
+        <a href="{{ url_for('contact') }}" {% if request.endpoint == 'contact' %}aria-current="page"{% endif %}>Contact</a>
+        <a class="button button-small nav-cta" href="{{ url_for('menu') }}">Explore menu <span aria-hidden="true">↗</span></a>
+      </nav>
+    </div>
+  </header>
+
+  {% with messages = get_flashed_messages(with_categories=true) %}
+    {% if messages %}<div class="flash-stack" role="status" aria-live="polite">
+      {% for category, message in messages %}<div class="flash flash-{{ category }}">{{ message }}</div>{% endfor %}
+    </div>{% endif %}
+  {% endwith %}
+
+  <main id="main">{% block content %}{% endblock %}</main>
+
+  {% block footer %}
+  <footer class="site-footer">
+    <div class="footer-main">
+      <div class="footer-brand"><a class="brand brand-light" href="{{ url_for('home') }}"><span class="brand-mark">t<span>.</span></span><span class="brand-name">The ToniQ <small>C A F E</small></span></a><p>Made for the moments worth slowing down for.</p></div>
+      <div><p class="footer-label">Explore</p><a href="{{ url_for('menu') }}">Our menu</a><a href="{{ url_for('about') }}">Our story</a><a href="{{ url_for('contact') }}">Get in touch</a></div>
+      <div><p class="footer-label">Come by</p><a href="tel:{{ site.phone|replace(' ', '') }}">{{ site.phone }}</a><a href="https://www.google.com/maps/search/?api=1&query=The+ToniQ+Cafe+DP+Road+Karvenagar+Pune" target="_blank" rel="noopener noreferrer">Karvenagar, Pune ↗</a><p class="footer-note">Dine-in · Kerbside pickup</p></div>
+    </div>
+    <div class="footer-bottom"><span>© {{ 2026 }} The ToniQ Cafe</span><span>Good coffee. Good company.</span></div>
+  </footer>
+  {% endblock %}
+  <script src="{{ url_for('static', filename='js/site.js') }}" defer></script>
+  {% block scripts %}{% endblock %}
+</body>
+</html>
